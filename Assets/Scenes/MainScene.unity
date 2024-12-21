@@ -3643,11 +3643,15 @@ PrefabInstance:
       objectReference: {fileID: 1112116915}
     - target: {fileID: 245308872695734765, guid: f483dda3c458742cf80b8f76ad6f9017, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PurchaseAnotherTurret
+      value: PurchaseMissileLauncher
       objectReference: {fileID: 0}
+    - target: {fileID: 4538354687878522023, guid: f483dda3c458742cf80b8f76ad6f9017, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2115497405, guid: eb07c42eb6d914a5981d5335d0472254, type: 3}
     - target: {fileID: 5279448731027152244, guid: f483dda3c458742cf80b8f76ad6f9017, type: 3}
       propertyPath: m_Name
-      value: 'AnotherTurretItem '
+      value: MissileLauncherItem
       objectReference: {fileID: 0}
     - target: {fileID: 6626553514649978397, guid: f483dda3c458742cf80b8f76ad6f9017, type: 3}
       propertyPath: m_Pivot.x
@@ -3728,6 +3732,14 @@ PrefabInstance:
     - target: {fileID: 6626553514649978397, guid: f483dda3c458742cf80b8f76ad6f9017, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635456393686169622, guid: f483dda3c458742cf80b8f76ad6f9017, type: 3}
+      propertyPath: m_PreferredWidth
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635456393686169622, guid: f483dda3c458742cf80b8f76ad6f9017, type: 3}
+      propertyPath: m_PreferredHeight
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14811,7 +14823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standardTurretPrefab: {fileID: 4165408538848483181, guid: 792d77b3574ca4d69a837cf733a3ad36, type: 3}
-  anotherTurretPrefab: {fileID: 4165408538848483181, guid: 9c82aa47a3f824a5aafe8555015f66da, type: 3}
+  missileLauncherPrefab: {fileID: 967729108563487254, guid: b2e5ffe9052b74e7aaeeb244829093e5, type: 3}
 --- !u!1001 &2042066154
 PrefabInstance:
   m_ObjectHideFlags: 0
