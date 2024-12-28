@@ -64,8 +64,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aef639af2f2f44539b945e0bbaebe9b0, type: 2}
-  - {fileID: 2100000, guid: 00866011550f24967a0e26162e8d58ae, type: 2}
+  - {fileID: 2100000, guid: 0d3fc129e1e554b27b8262b6dc363843, type: 2}
+  - {fileID: 2100000, guid: 8f3e1ffbee46a4ea6861cdc600e2fc51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,9 +151,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 81220cd5af681406dbefd478bd58be55, type: 2}
-  - {fileID: 2100000, guid: 7039241574a2748219081fb3324f7a52, type: 2}
-  - {fileID: 2100000, guid: 1f06c243a26074a55b545d19eb58f749, type: 2}
+  - {fileID: 2100000, guid: 6fba2afda8e024a22a84d1ea7269af18, type: 2}
+  - {fileID: 2100000, guid: b70841b2207044d8e91f487324d4d7a4, type: 2}
+  - {fileID: 2100000, guid: 6143d5789befd41be9280f5e02045029, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 798471107046696176}
   - component: {fileID: -8407282399873829965}
   m_Layer: 0
-  m_Name: LaserBeamer
+  m_Name: LaserBeamer_Upgraded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,8 +202,8 @@ Transform:
   m_GameObject: {fileID: 4296192286928507868}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.175, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9145305308891893034}
@@ -223,12 +223,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db688b93b2345a7adbc769297e9f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 20
+  range: 30
   bulletPrefab: {fileID: 6183910309253783724, guid: 7dd95834b62934868be32818f2082e0e, type: 3}
   fireRate: 1
   useLaser: 1
-  damageOverTime: 30
-  slowAmount: 0.5
+  damageOverTime: 40
+  slowAmount: 0.75
   lineRenderer: {fileID: -8407282399873829965}
   impactEffect: {fileID: 8043139221503061296}
   impactLight: {fileID: 6488187037932430120}
@@ -292,7 +292,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.3
+        value: 0.40294343
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -387,7 +387,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.22352941, g: 1, b: 0.078431375, a: 1}
   m_Intensity: 3
-  m_Range: 10
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -758,8 +758,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 2
+      scalar: 4
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
