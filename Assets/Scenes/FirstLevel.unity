@@ -19556,7 +19556,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71700d22d2cef4711baaf5e2fa4bbef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1941839250295641188, guid: 43db29c92868e49e5b158e060fb542bf, type: 3}
+  waves:
+  - enemy: {fileID: 4612406789604336705, guid: 43db29c92868e49e5b158e060fb542bf, type: 3}
+    count: 1
+    rate: 2
+  - enemy: {fileID: 4612406789604336705, guid: 43db29c92868e49e5b158e060fb542bf, type: 3}
+    count: 2
+    rate: 2
+  - enemy: {fileID: 4612406789604336705, guid: 43db29c92868e49e5b158e060fb542bf, type: 3}
+    count: 5
+    rate: 2
+  - enemy: {fileID: 4612406789604336705, guid: 3549b2877780f4d2ebc693b285f1b9e3, type: 3}
+    count: 3
+    rate: 1
+  - enemy: {fileID: 4612406789604336705, guid: a86e52bc3ebc1453fbb9c85b978eebc2, type: 3}
+    count: 10
+    rate: 3
   spawnPoint: {fileID: 1610604203}
   timeBetweenWaves: 7
   waveCountdownText: {fileID: 1721210753}
@@ -19603,7 +19618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMoney: 9999
-  startLives: 5
+  startLives: 2
 --- !u!114 &2027696012
 MonoBehaviour:
   m_ObjectHideFlags: 0
