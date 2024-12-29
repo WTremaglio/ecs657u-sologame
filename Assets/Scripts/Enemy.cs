@@ -50,7 +50,6 @@ public class Enemy : MonoBehaviour
         Destroy(effect, 5f);
 
         WaveSpawner.EnemiesAlive--;
-        Debug.Log(WaveSpawner.EnemiesAlive);
 
         Destroy(gameObject);
     }
