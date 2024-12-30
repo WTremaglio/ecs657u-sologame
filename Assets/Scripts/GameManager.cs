@@ -1,3 +1,4 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -5,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static bool GameIsOver;
 
     public GameObject gameOverUI;
+    public GameObject completeLevelUI;
 
     // Start is called before the first frame update
     void Start()
@@ -30,5 +32,11 @@ public class GameManager : MonoBehaviour
         GameIsOver = true;
         
         gameOverUI.SetActive(true);
+    }
+
+    public void WinLevel()
+    {
+        GameIsOver = true;
+        completeLevelUI.SetActive(true);
     }
 }

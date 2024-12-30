@@ -126,4 +126,19 @@ public class Node : MonoBehaviour
 
         Debug.Log("Turret upgraded!");
     }
+
+    public void SellTurret()
+    {
+        PlayerStats.Money += turretBlueprint.GetSellAmount();
+
+        GameObject effect = (GameObject)Instantiate(buildManager.sellEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 5f);
+
+        Destroy(turret);
+        turretBlueprint = null;
+
+        isUpgraded = false;
+
+        Debug.Log("Turret sold!");
+    }
 }
