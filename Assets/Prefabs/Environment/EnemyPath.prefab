@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2509571413780529721}
   - component: {fileID: 6423574639090841191}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: EnemyPath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

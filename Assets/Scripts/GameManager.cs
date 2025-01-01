@@ -1,12 +1,13 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static bool GameIsOver;
+    public EndOfGame endOfGameUI;
 
-    public GameObject gameOverUI;
-    public GameObject completeLevelUI;
+    [Header("Track Progression")]
+    public string nextTrack;
+    public int trackToUnlock;
 
     // Start is called before the first frame update
     void Start()
@@ -23,20 +24,20 @@ public class GameManager : MonoBehaviour
         }
         if (PlayerStats.Lives <= 0)
         {
-            EndGame();
+            EndGame(false);
         }
-    }
-
-    void EndGame()
-    {
-        GameIsOver = true;
-        
-        gameOverUI.SetActive(true);
     }
 
     public void WinLevel()
     {
+        EndGame(true);
+    }
+
+    void EndGame(bool isTrackComplete)
+    {
         GameIsOver = true;
-        completeLevelUI.SetActive(true);
+
+        endOfGameUI.gameObject.SetActive(true);
+        endOfGameUI.Setup(isTrackComplete, nextTrack, trackToUnlock);
     }
 }

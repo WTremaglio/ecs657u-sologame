@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4333893126624751453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8796681624428654702}
+  - component: {fileID: 3950082746217222548}
+  - component: {fileID: 1430246108466730647}
+  - component: {fileID: 4502120170545244635}
+  - component: {fileID: 4968288868468208000}
+  - component: {fileID: 8210499267552941249}
+  m_Layer: 0
+  m_Name: GameMaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8796681624428654702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333893126624751453}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3950082746217222548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333893126624751453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b0c3af0cbb9436c9b09b211981c8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endOfGameUI: {fileID: 0}
+  nextTrack: 0
+  trackToUnlock: 0
+--- !u!114 &1430246108466730647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333893126624751453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71700d22d2cef4711baaf5e2fa4bbef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - enemy: {fileID: 4612406789604336705, guid: 43db29c92868e49e5b158e060fb542bf, type: 3}
+    count: 1
+    rate: 2
+  - enemy: {fileID: 4612406789604336705, guid: 43db29c92868e49e5b158e060fb542bf, type: 3}
+    count: 2
+    rate: 2
+  - enemy: {fileID: 4612406789604336705, guid: 43db29c92868e49e5b158e060fb542bf, type: 3}
+    count: 5
+    rate: 2
+  - enemy: {fileID: 4612406789604336705, guid: 3549b2877780f4d2ebc693b285f1b9e3, type: 3}
+    count: 3
+    rate: 1
+  - enemy: {fileID: 4612406789604336705, guid: a86e52bc3ebc1453fbb9c85b978eebc2, type: 3}
+    count: 10
+    rate: 3
+  spawnPoint: {fileID: 0}
+  timeBetweenWaves: 7
+  waveCountdownText: {fileID: 0}
+  gameManager: {fileID: 3950082746217222548}
+--- !u!114 &4502120170545244635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333893126624751453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3f11b6e42a3454c9f02897f2c35d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildEffect: {fileID: 1516329262595152336, guid: 88245fc9f368b439cb3d0cb4a4fae970, type: 3}
+  sellEffect: {fileID: 1516329262595152336, guid: bdad8154454fa4b2a88f262ca09f770d, type: 3}
+  nodeUI: {fileID: 0}
+--- !u!114 &4968288868468208000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333893126624751453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6326828be424dd5a91c6364849a101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startMoney: 250
+  startLives: 10
+--- !u!114 &8210499267552941249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333893126624751453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ae34f925bd44188b65955916ea01a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 0}
+  menuSceneName: MainMenu
+  sceneFader: {fileID: 0}
