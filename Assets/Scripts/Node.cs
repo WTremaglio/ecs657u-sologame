@@ -14,6 +14,11 @@ public class Node : MonoBehaviour
     [HideInInspector]
     public bool isUpgraded = false;
 
+    [HideInInspector]
+    public GameObject obstacle;
+    [HideInInspector]
+    public int treeRemovalCost = 500;
+
     private Renderer rend;
     private Color startColor;
 
@@ -32,6 +37,17 @@ public class Node : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {
+            return;
+        }
+
+        if (obstacle != null)
+        {
+            if (obstacle.CompareTag("Rock"))
+            {
+                return;
+            }
+
+            buildManager.SelectNode(this);
             return;
         }
 
@@ -140,5 +156,15 @@ public class Node : MonoBehaviour
         isUpgraded = false;
 
         Debug.Log("Turret sold!");
+    }
+
+    public void RemoveObstacle()
+    {
+        PlayerStats.Money -= treeRemovalCost;
+
+        Destroy(obstacle);
+        obstacle = null;
+
+        Debug.Log("Obstacle removed!");
     }
 }
