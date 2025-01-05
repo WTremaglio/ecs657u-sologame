@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 0
   prefab: {fileID: 4612406789604336705, guid: 43db29c92868e49e5b158e060fb542bf, type: 3}
   defaultSpeed: 10
-  startHealth: 1
+  startHealth: 100
   worth: 1
   deathEffect: {fileID: 2113116650863571040, guid: 139435a450e79425f863382013244792, type: 3}

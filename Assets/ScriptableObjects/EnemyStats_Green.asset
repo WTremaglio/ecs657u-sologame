@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   prefab: {fileID: 4612406789604336705, guid: 31f3f0f2fdba0465ab0ea948105ceb98, type: 3}
-  startSpeed: 20
-  startHealth: 1
+  defaultSpeed: 10
+  startHealth: 100
   worth: 1
   deathEffect: {fileID: 2113116650863571040, guid: 5c45d0d9a3dec4c639672080c7aa9492, type: 3}
