@@ -1,50 +1,63 @@
 using UnityEngine;
 
+/// <summary>
+/// Controls enemy movement along a predefined path.
+/// </summary>
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
-    private Transform target;
-    private int wavepointIndex = 0;
+    [Header("Path")]
+    private Transform _target;
+    private int _wavepointIndex = 0;
 
-    private Enemy enemy;
+    private Enemy _enemy;
+    
+    [Tooltip("Threshold distance to determine when to move to the next waypoint.")]
+    private const float WaypointThreshold = 0.4f;
 
-    // Start is called before the first frame update
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        enemy = GetComponent<Enemy>();
-        target = Waypoints.points[0];
+        _enemy = GetComponent<Enemy>();
+        _target = Waypoints.points[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * enemy.speed * Time.deltaTime, Space.World);
+        MoveTowardsTarget();
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+        if (Vector3.Distance(transform.position, _target.position) <= WaypointThreshold)
         {
             GetNextWaypoint();
         }
 
-        enemy.speed = enemy.startSpeed;
+        // Reset speed to default
+        _enemy.Speed = _enemy.stats.defaultSpeed;
+    }
+
+    private void MoveTowardsTarget()
+    {
+        Vector3 direction = _target.position - transform.position;
+        transform.Translate(direction.normalized * _enemy.Speed * Time.deltaTime, Space.World);
     }
 
     void GetNextWaypoint()
     {
-        if (wavepointIndex >= Waypoints.points.Length - 1)
+        if (_wavepointIndex >= Waypoints.points.Length - 1)
         {
             EndPath();
             return;
         }
 
-        wavepointIndex++;
-        target = Waypoints.points[wavepointIndex];
+        _wavepointIndex++;
+        _target = Waypoints.points[_wavepointIndex];
     }
 
     void EndPath()
     {
         PlayerStats.Lives--;
+        RoundManager.DecrementEnemiesAlive();
         Destroy(gameObject);
-        WaveSpawner.EnemiesAlive--;
     }
 }

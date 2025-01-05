@@ -18270,9 +18270,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1688359405}
     - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
+      propertyPath: timeBetweenRounds
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
       propertyPath: waveCountdownText
       value: 
       objectReference: {fileID: 1339885245}
+    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
+      propertyPath: roundCountdownText
+      value: 
+      objectReference: {fileID: 1339885245}
+    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
+      propertyPath: enemyStatsList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
+      propertyPath: 'enemyStatsList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fa4642d13a9584d729f43b76c795ba59, type: 2}
+    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
+      propertyPath: 'enemyStatsList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4318316ddf2294eb6b679fc47ecaee9d, type: 2}
+    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
+      propertyPath: 'enemyStatsList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 07f7444ab163c47e9ab17d533a6b9f0d, type: 2}
+    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
+      propertyPath: 'enemyStatsList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 76b88780ea1c8402893bf492263abb7a, type: 2}
     - target: {fileID: 3950082746217222548, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
       propertyPath: nextTrack
       value: Track02

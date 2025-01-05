@@ -1,59 +1,87 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Represents an enemy with health, speed, and behavior upon death.
+/// </summary>
 public class Enemy : MonoBehaviour
 {
-    public float startSpeed = 10f;
+    [Header("Stats")]
+    [Tooltip("The stats assigned to this enemy type.")]
+    public EnemyStats stats; // Scriptable object for stats
 
-    [HideInInspector]
-    public float speed;
-
-    public float startHealth = 100;
-    private float health;
-
-    public int worth = 50;
-
-    public GameObject deathEffect;
-
-    [Header("Unity Stuff")]
+    [Header("UI")]
+    [Tooltip("The health bar UI element.")]
     public Image healthBar;
+    
+    private float _health;
+    private float _speed;
+    private bool _isDead = false;
 
-    private bool isDead = false;
+    public delegate void EnemyDiedHandler(Enemy enemy);
+    public static event EnemyDiedHandler OnEnemyDied;
 
-    // Start is called before the first frame update
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        speed = startSpeed;
-        health = startHealth;
+        _health = stats.startHealth;
+        _speed = stats.defaultSpeed;
     }
 
+    /// <summary>
+    /// Current speed of the enemy.
+    /// </summary>
+    public float Speed
+    {
+        get => _speed;
+        set => _speed = value;
+    }
+
+    /// <summary>
+    /// Slows the enemy by a given percentage.
+    /// </summary>
+    /// <param name="pct">Percentage to reduce speed.</param>
+    public void Slow(float pct)
+    {
+        _speed = stats.defaultSpeed * (1f - pct);
+    }
+
+    /// <summary>
+    /// Reduces the enemy's health by a given amount and checks for death.
+    /// </summary>
+    /// <param name="amount">The amount of damage to apply.</param>
     public void TakeDamage(float amount)
     {
-        health -= amount;
+        _health -= amount;
+        UpdateHealthBar();
 
-        healthBar.fillAmount = health / startHealth;
-
-        if (health <= 0 && !isDead)
+        if (_health <= 0 && !_isDead)
         {
             Die();
         }
     }
 
-    public void Slow(float pct)
+    private void UpdateHealthBar()
     {
-        speed = startSpeed * (1f - pct);
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = _health / stats.startHealth;
+        }
     }
 
-    void Die()
+    private void Die()
     {
-        isDead = true;
+        _isDead = true;
 
-        PlayerStats.Money += worth;
-        
-        GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 5f);
+        // Notify listeners
+        OnEnemyDied?.Invoke(this);
 
-        WaveSpawner.EnemiesAlive--;
+        // Spawn death effect
+        if (stats.deathEffect != null)
+        {
+            GameObject effect = Instantiate(stats.deathEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 5f);
+        }
 
         Destroy(gameObject);
     }
