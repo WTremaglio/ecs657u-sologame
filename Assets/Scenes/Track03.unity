@@ -9945,60 +9945,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: spawnPoint
+      propertyPath: _spawnPoint
       value: 
       objectReference: {fileID: 1610604203}
     - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: timeBetweenRounds
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: waveCountdownText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: roundCountdownText
+      propertyPath: _roundCountdownText
       value: 
       objectReference: {fileID: 1338908800}
-    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: enemyStatsList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: 'enemyStatsList.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: fa4642d13a9584d729f43b76c795ba59, type: 2}
-    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: 'enemyStatsList.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 4318316ddf2294eb6b679fc47ecaee9d, type: 2}
-    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: 'enemyStatsList.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 07f7444ab163c47e9ab17d533a6b9f0d, type: 2}
-    - target: {fileID: 1430246108466730647, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: 'enemyStatsList.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 76b88780ea1c8402893bf492263abb7a, type: 2}
-    - target: {fileID: 3950082746217222548, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: nextTrack
-      value: Track02
-      objectReference: {fileID: 0}
     - target: {fileID: 3950082746217222548, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
       propertyPath: endOfGameUI
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3950082746217222548, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: trackToUnlock
-      value: 2
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1571524152}
     - target: {fileID: 4333893126624751453, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
       propertyPath: m_Name
       value: GameMaster
-      objectReference: {fileID: 0}
-    - target: {fileID: 4502120170545244635, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: nodeUI
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4502120170545244635, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
       propertyPath: towerUI
@@ -10008,14 +9968,6 @@ PrefabInstance:
       propertyPath: obstacleUI
       value: 
       objectReference: {fileID: 1338908796}
-    - target: {fileID: 4968288868468208000, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: startLives
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4968288868468208000, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
-      propertyPath: startMoney
-      value: 9999
-      objectReference: {fileID: 0}
     - target: {fileID: 8210499267552941249, guid: 4a699fb29994a4d66bf151f178ad744e, type: 3}
       propertyPath: ui
       value: 
@@ -13502,6 +13454,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3108689345221715415, guid: 37d4edf8bb2014006bc5a61cea5e835b, type: 3}
   m_PrefabInstance: {fileID: 1258859468}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1571524152 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 507607192194586805, guid: fc4341e72bfbd4602ab3f838e4bbc11a, type: 3}
+  m_PrefabInstance: {fileID: 1338908795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09107effd2c044feb9fd5ff253ee4647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1575976791
 PrefabInstance:
   m_ObjectHideFlags: 0

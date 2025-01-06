@@ -7,33 +7,57 @@ using TMPro;
 /// </summary>
 public class RoundManager : MonoBehaviour
 {
-    [Header("General Settigns")]
-    [Tooltip("The spawn point for the enemies.")]
-    public Transform spawnPoint;
+    [Header("General Settings")]
+    [SerializeField, Tooltip("The spawn point for the enemies.")]
+    private Transform _spawnPoint;
 
-    [Tooltip("Time between rounds in seconds.")]
-    public float timeBetweenRounds = 5.5f;
+    [SerializeField, Tooltip("Time between rounds in seconds.")]
+    private float _timeBetweenRounds = 5.5f;
 
-    [Tooltip("The game manager responsible for win/lose conditions.")]
-    public TMP_Text roundCountdownText;
+    [SerializeField, Tooltip("The text field for displaying the round countdown.")]
+    private TMP_Text _roundCountdownText;
 
-    [Tooltip("The game manager responsible for win/lose conditions.")]
-    public GameManager gameManager;
+    [SerializeField, Tooltip("The game manager responsible for win/lose conditions.")]
+    private GameManager _gameManager;
 
     [Header("Enemy Settings")]
-    [Tooltip("List of enemy stats for all enemy types.")]
-    public EnemyStats[] enemyStatsList;
-    
+    [SerializeField, Tooltip("List of enemy stats for all enemy types.")]
+    private EnemyStats[] _enemyStatsList;
+
     private static int _enemiesAlive = 0;
-    
+
     private float _countdown = 2f;
     private int _roundIndex = 0;
     private Round[] _rounds;
 
+    /// <summary>
+    /// Tracks the number of alive enemies in the current round.
+    /// </summary>
     public static int EnemiesAlive
     {
         get => _enemiesAlive;
         private set => _enemiesAlive = value;
+    }
+
+    /// <summary>
+    /// Singleton instance of the RoundManager.
+    /// </summary>
+    public static RoundManager Instance { get; private set; }
+
+    /// <summary>
+    /// Ensures the singleton instance of the RoundManager is properly initialized.
+    /// Destroys duplicate instances to maintain a single active RoundManager.
+    /// </summary>
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,8 +65,6 @@ public class RoundManager : MonoBehaviour
     {
         _rounds = RoundData.GetRounds();
         EnemiesAlive = 0;
-
-        Enemy.OnEnemyDied += HandleEnemyDeath;
     }
 
     // Update is called once per frame
@@ -52,7 +74,7 @@ public class RoundManager : MonoBehaviour
 
         if (_roundIndex == _rounds.Length)
         {
-            gameManager.WinLevel();
+            _gameManager.WinLevel();
             enabled = false;
             return;
         }
@@ -61,7 +83,7 @@ public class RoundManager : MonoBehaviour
         {
             PlayerStats.Rounds++;
             StartCoroutine(SpawnRound(_rounds[_roundIndex]));
-            _countdown = timeBetweenRounds;
+            _countdown = _timeBetweenRounds;
             _roundIndex++;
             return;
         }
@@ -69,13 +91,7 @@ public class RoundManager : MonoBehaviour
         _countdown -= Time.deltaTime;
         _countdown = Mathf.Clamp(_countdown, 0f, Mathf.Infinity);
 
-        roundCountdownText.text = $"{_countdown:00.00}";
-    }
-
-    // Unsubscribe from events when disabled
-    void OnDisable()
-    {
-        Enemy.OnEnemyDied -= HandleEnemyDeath;
+        _roundCountdownText.text = $"{_countdown:00.00}";
     }
 
     /// <summary>
@@ -83,15 +99,24 @@ public class RoundManager : MonoBehaviour
     /// </summary>
     /// <param name="round">The round configuration.</param>
     /// <returns>Coroutine for spawning enemies.</returns>
-    IEnumerator SpawnRound(Round round)
+    private IEnumerator SpawnRound(Round round)
     {
-        // Calculate the total enemies in this round
+        // Calculate total weighted enemies for this round
         foreach (var spawnInfo in round.enemies)
         {
-            EnemiesAlive += spawnInfo.count;
+            var stats = GetEnemyStats(spawnInfo.enemyType);
+            if (stats != null)
+            {
+                EnemiesAlive += spawnInfo.count * stats.Lives;
+                Debug.Log($"Adding {spawnInfo.count * stats.Lives} to EnemiesAlive for {spawnInfo.enemyType}. Total: {EnemiesAlive}");
+            }
+            else
+            {
+                Debug.LogError($"Failed to find stats for enemy type: {spawnInfo.enemyType}");
+            }
         }
 
-        // Spawn enemies according to the round configuration
+        // Spawn enemies
         foreach (var spawnInfo in round.enemies)
         {
             for (int i = 0; i < spawnInfo.count; i++)
@@ -106,14 +131,25 @@ public class RoundManager : MonoBehaviour
     /// Spawns a single enemy of the given type.
     /// </summary>
     /// <param name="type">The type of enemy to spawn.</param>
-    void SpawnEnemy(EnemyType type)
+    private void SpawnEnemy(EnemyType type)
     {
         EnemyStats enemyStats = GetEnemyStats(type);
         if (enemyStats != null)
         {
-            GameObject enemyPrefab = Instantiate(enemyStats.prefab, spawnPoint.position, spawnPoint.rotation);
-            Enemy enemy = enemyPrefab.GetComponent<Enemy>();
-            enemy.stats = enemyStats;
+            GameObject newEnemy = Instantiate(enemyStats.Prefab, _spawnPoint.position, _spawnPoint.rotation);
+            Enemy enemy = newEnemy.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.Init(enemyStats); // Use Init to set up stats and health immediately
+            }
+            else
+            {
+                Debug.LogError($"Spawned prefab for {type} is missing the Enemy script!");
+            }
+        }
+        else
+        {
+            Debug.LogError($"Failed to find stats for enemy type: {type}");
         }
     }
 
@@ -122,32 +158,29 @@ public class RoundManager : MonoBehaviour
     /// </summary>
     /// <param name="type">The type of enemy to find.</param>
     /// <returns>The corresponding EnemyStats, or null if not found.</returns>
-    EnemyStats GetEnemyStats(EnemyType type)
+    public static EnemyStats GetEnemyStats(EnemyType type)
     {
-        foreach (EnemyStats stats in enemyStatsList)
+        foreach (EnemyStats stats in Instance._enemyStatsList)
         {
-            if (stats.type == type) return stats;
+            if (stats.Type == type) return stats;
         }
         return null;
     }
 
     /// <summary>
-    /// Handles logic for when an enemy dies.
-    /// </summary>
-    /// <param name="enemy">The enemy that died.</param>
-    void HandleEnemyDeath(Enemy enemy)
-    {
-        EnemiesAlive--;
-    }
-
-    /// <summary>
     /// Decrements the count of enemies alive.
     /// </summary>
-    public static void DecrementEnemiesAlive()
+    /// <param name="weight">The weight of the enemy being removed.</param>
+    public static void DecrementEnemiesAlive(int weight = 1)
     {
         if (_enemiesAlive > 0)
         {
-            _enemiesAlive--;
+            _enemiesAlive -= weight;
+            Debug.Log($"Decrementing EnemiesAlive by {weight}. Remaining: {_enemiesAlive}");
+        }
+        else
+        {
+            Debug.LogWarning("Attempted to decrement EnemiesAlive when it was already 0.");
         }
     }
 }

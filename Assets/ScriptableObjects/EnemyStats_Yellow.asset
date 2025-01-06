@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523f181dd201646df947bf02d5fc8fb5, type: 3}
   m_Name: EnemyStats_Yellow
   m_EditorClassIdentifier: 
-  type: 3
-  prefab: {fileID: 4612406789604336705, guid: a86e52bc3ebc1453fbb9c85b978eebc2, type: 3}
-  defaultSpeed: 10
-  startHealth: 100
-  worth: 1
-  deathEffect: {fileID: 2113116650863571040, guid: c37df4123d0e04bb9a922f848beb9179, type: 3}
+  _type: 3
+  _prefab: {fileID: 4612406789604336705, guid: a86e52bc3ebc1453fbb9c85b978eebc2, type: 3}
+  _defaultSpeed: 30
+  _startHealth: 100
+  _lives: 4
+  _worth: 1
+  _deathEffect: {fileID: 2113116650863571040, guid: c37df4123d0e04bb9a922f848beb9179, type: 3}
