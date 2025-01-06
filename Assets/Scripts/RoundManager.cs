@@ -11,12 +11,6 @@ public class RoundManager : MonoBehaviour
     [SerializeField, Tooltip("The spawn point for the enemies.")]
     private Transform _spawnPoint;
 
-    [SerializeField, Tooltip("Time between rounds in seconds.")]
-    private float _timeBetweenRounds = 5.5f;
-
-    [SerializeField, Tooltip("The text field for displaying the round countdown.")]
-    private TMP_Text _roundCountdownText;
-
     [SerializeField, Tooltip("The game manager responsible for win/lose conditions.")]
     private GameManager _gameManager;
 
@@ -26,9 +20,11 @@ public class RoundManager : MonoBehaviour
 
     private static int _enemiesAlive = 0;
 
-    private float _countdown = 2f;
     private int _roundIndex = 0;
+    private bool _roundInProgress = false;
     private Round[] _rounds;
+
+    public bool RoundInProgress => _roundInProgress;
 
     /// <summary>
     /// Tracks the number of alive enemies in the current round.
@@ -79,19 +75,33 @@ public class RoundManager : MonoBehaviour
             return;
         }
 
-        if (_countdown <= 0f)
+        if (_roundInProgress && EnemiesAlive == 0)
         {
-            PlayerStats.Rounds++;
-            StartCoroutine(SpawnRound(_rounds[_roundIndex]));
-            _countdown = _timeBetweenRounds;
-            _roundIndex++;
+            _roundInProgress = false;
+        }
+    }
+
+    /// <summary>
+    /// Starts the next round when called.
+    /// </summary>
+    public void StartNextRound()
+    {
+        if (_roundIndex >= _rounds.Length)
+        {
+            _gameManager.WinLevel();
+            enabled = false;
             return;
         }
 
-        _countdown -= Time.deltaTime;
-        _countdown = Mathf.Clamp(_countdown, 0f, Mathf.Infinity);
+        if (_roundInProgress)
+        {
+            return;
+        }
 
-        _roundCountdownText.text = $"{_countdown:00.00}";
+        _roundInProgress = true;
+        PlayerStats.Rounds++;
+        StartCoroutine(SpawnRound(_rounds[_roundIndex]));
+        _roundIndex++;
     }
 
     /// <summary>

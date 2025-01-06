@@ -3,8 +3,9 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public TurretBlueprint standardTurret;
-    public TurretBlueprint missileLauncher;
-    public TurretBlueprint laserBeamer;
+    public TurretBlueprint cannonTurret;
+    public TurretBlueprint laserTurret;
+    public TurretBlueprint sniperTurret;
 
     BuildManager buildManager;
 
@@ -20,15 +21,21 @@ public class Shop : MonoBehaviour
         buildManager.SelectTurretToBuild(standardTurret);
     }
 
-    public void SelectMissileLauncher()
+    public void SelectCannonTurret()
     {
-        Debug.Log("Missile Launcher Selected");
-        buildManager.SelectTurretToBuild(missileLauncher);
+        Debug.Log("Cannon Turret Selected");
+        buildManager.SelectTurretToBuild(cannonTurret);
     }
 
     public void SelectLaserBeamer()
     {
-        Debug.Log("Laser Beamer Selected");
-        buildManager.SelectTurretToBuild(laserBeamer);
+        Debug.Log("Laser Turret Selected");
+        buildManager.SelectTurretToBuild(laserTurret);
+    }
+
+    public void SelectSniperTurret()
+    {
+        Debug.Log("Sniper Turret Selected");
+        buildManager.SelectTurretToBuild(sniperTurret);
     }
 }

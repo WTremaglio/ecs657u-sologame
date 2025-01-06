@@ -89,6 +89,7 @@ MonoBehaviour:
   _laserDamage: 30
   _slowAmount: 0.5
   _infiniteRange: 0
+  _sniperDamage: 100
   _rotationPivot: {fileID: 7727171166996553371}
   _firePoint: {fileID: 4251604589082103984}
   _turnSpeed: 10
@@ -143,7 +144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1195379553597700268
 Transform:
   m_ObjectHideFlags: 0

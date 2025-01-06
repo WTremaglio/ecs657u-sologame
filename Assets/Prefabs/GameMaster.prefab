@@ -64,8 +64,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 0}
-  _timeBetweenRounds: 5.5
-  _roundCountdownText: {fileID: 0}
   _gameManager: {fileID: 3950082746217222548}
   _enemyStatsList:
   - {fileID: 11400000, guid: fa4642d13a9584d729f43b76c795ba59, type: 2}
@@ -101,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMoney: 9999
-  startLives: 55
+  startLives: 1
 --- !u!114 &8210499267552941249
 MonoBehaviour:
   m_ObjectHideFlags: 0
