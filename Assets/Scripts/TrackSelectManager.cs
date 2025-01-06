@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TrackSelectManager : MonoBehaviour
 {
@@ -22,5 +23,15 @@ public class TrackSelectManager : MonoBehaviour
     public void Select (string levelName)
     {
         fader.FadeTo(levelName);
+    }
+
+    public void UnlockAllTracks()
+    {
+        PlayerPrefs.SetInt("trackUnlocked", 3); // Assuming 3 is the highest track
+        PlayerPrefs.Save();
+        Debug.Log("All tracks unlocked!");
+        
+        // Reload the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

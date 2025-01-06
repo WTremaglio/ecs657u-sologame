@@ -76,14 +76,15 @@ public class EndOfGame : MonoBehaviour
     /// </summary>
     private void ConfigureTrackCompleteUI(string nextTrack, int trackToUnlock)
     {
+        PlayerPrefs.SetInt("trackUnlocked", trackToUnlock);
+        
         _headerText.text = "Track Complete!";
         _retryButton.gameObject.SetActive(false);
         _continueButton.gameObject.SetActive(true);
-
+        
         _continueButton.onClick.RemoveAllListeners();
         _continueButton.onClick.AddListener(() =>
         {
-            PlayerPrefs.SetInt("trackReached", trackToUnlock);
             if (_sceneTransition != null)
             {
                 _sceneTransition.FadeTo(nextTrack);

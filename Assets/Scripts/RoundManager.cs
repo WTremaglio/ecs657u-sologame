@@ -68,6 +68,12 @@ public class RoundManager : MonoBehaviour
     {
         if (EnemiesAlive > 0) return;
 
+        if (EnemiesAlive < 0)
+        {
+            Debug.LogError("EnemiesAlive is below 0 in Update! Resetting to 0.");
+            EnemiesAlive = 0;
+        }
+
         if (_roundIndex == _rounds.Length)
         {
             _gameManager.WinLevel();
@@ -78,6 +84,9 @@ public class RoundManager : MonoBehaviour
         if (_roundInProgress && EnemiesAlive == 0)
         {
             _roundInProgress = false;
+
+            int moneyAwarded = 99 + PlayerStats.Rounds;
+            PlayerStats.Money += moneyAwarded;
         }
     }
 

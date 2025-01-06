@@ -79,6 +79,8 @@ public class Enemy : MonoBehaviour
 
         Debug.Log($"Enemy {stats.Type} is dying. Excess damage: {excessDamage}");
 
+        PlayerStats.Money += stats.Worth;
+        
         RoundManager.DecrementEnemiesAlive(stats.Lives);
 
         SpawnWeakerEnemy(excessDamage);
